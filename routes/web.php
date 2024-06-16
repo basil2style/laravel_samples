@@ -19,5 +19,8 @@ Route::get('/student/profile/index' , [ProfileController::class,'index'])->name(
 Route::get('/student/comments/store' , [CommentController::class,'store'])->name('comments.store');
 Route::get('/student/comments/index' , [CommentController::class,'index'])->name('comments.index');
 
-Route::get('/api/products', [ProductController::class, 'index']);
-Route::get('/api/products/create', [ProductController::class, 'create']);
+
+Route::middleware(['isAdmin'])->group(function () {
+    Route::get('/api/products', [ProductController::class, 'index']);
+    Route::get('/api/products/create', [ProductController::class, 'create']);
+});
