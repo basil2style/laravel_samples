@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\HelperTestController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\StudentController;
@@ -19,6 +20,7 @@ Route::get('/student/profile/index' , [ProfileController::class,'index'])->name(
 Route::get('/student/comments/store' , [CommentController::class,'store'])->name('comments.store');
 Route::get('/student/comments/index' , [CommentController::class,'index'])->name('comments.index');
 
+Route::get('/helper/test' , [HelperTestController::class,'index'])->name('helper.test');
 
 Route::middleware(['isAdmin'])->group(function () {
     Route::get('/api/products', [ProductController::class, 'index']);
