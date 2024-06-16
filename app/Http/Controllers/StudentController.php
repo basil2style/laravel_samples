@@ -9,7 +9,7 @@ class StudentController extends Controller
 {
     public function index()
     {
-        $stu = Student::with('profile')->get();
+        $stu = Student::with('profile')->with('comments')->get();
         dd($stu);
     }
 
@@ -22,4 +22,6 @@ class StudentController extends Controller
 
         dd($stu);
     }
+
+
 }

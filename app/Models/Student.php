@@ -14,4 +14,8 @@ class Student extends Model
     public function profile() {
         return $this->hasOne(Profile::class);
     }
+
+    public function comments() {
+        return $this->hasMany(Comment::class, 'student_id', 'id');
+    }
 }
