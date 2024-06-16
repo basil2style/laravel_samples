@@ -5,6 +5,7 @@ use App\Http\Controllers\HelperTestController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\StudentController;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -25,4 +26,13 @@ Route::get('/helper/test' , [HelperTestController::class,'index'])->name('helper
 Route::middleware(['isAdmin'])->group(function () {
     Route::get('/api/products', [ProductController::class, 'index']);
     Route::get('/api/products/create', [ProductController::class, 'create']);
+});
+
+Route::get('/clear-cache', function() {
+    $exitCode = Artisan::call('config:cache');
+    $exitCode = Artisan::call('cache:clear');
+    $exitCode = Artisan::call('view:clear');
+    $exitCode = Artisan::call('route:cache');
+
+    return 'DONE!';
 });
